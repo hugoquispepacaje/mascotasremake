@@ -1,0 +1,25 @@
+<div *ngIf="anuncios?.length===0; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <div class="alert alert-primary alert-style" role="alert">
+    No hay anuncios :C
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+  <div class="row">
+    <div *ngFor="let anuncio of anuncios;" class="col-12 col-lg-6 col-xl-4 card-config">
+      <mat-card style="text-align: center;">
+        <mat-card-title>{{anuncio.nombrePublicacion}}</mat-card-title>
+        <mat-card-subtitle>
+          {{anuncio.tipoPublicacion==0?'Mascota perdida':'Mascota encontrada'}}
+        </mat-card-subtitle>
+        <img mat-card-image src={{anuncio.urlFoto}} alt="Imagen del card {{anuncio.nombrePublicacion}}">
+        <mat-card-content>
+          <p>Fecha de perdida/encuentro<br><i>{{anuncio.fechaPerdidaEncuentro}}</i></p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="verAnuncio(anuncio)">Ver Anuncio</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</ng-template>
